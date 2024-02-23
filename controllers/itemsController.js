@@ -10,3 +10,15 @@ exports.itemList = asyncHandler(async (req, res, next) => {
         items: items,
     })
 })
+
+exports.itemDetails = asyncHandler(async (req, res, next) => {
+    const item = await Item.findOne({_id: req.params.id}).populate('category').exec();
+
+    res.render('itemDetails', {
+        title: item.name,
+        price: item.price,
+        description: item.description,
+        numberInStock: item.numberInStock,
+        category: item.category,
+    })
+})

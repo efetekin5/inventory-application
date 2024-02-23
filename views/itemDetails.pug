@@ -1,0 +1,11 @@
+extends layout 
+
+block content 
+    h1 #{title}
+    br
+
+    h5 #[strong Category:] 
+        a(href=category.url) #{category.name}
+    h5 #[strong Price:] #{price}$
+    h5 #[strong Number In Stock:] #{numberInStock}
+    h5 #[strong Description:] #{description}
