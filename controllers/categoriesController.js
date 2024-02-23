@@ -22,3 +22,14 @@ exports.categoryList = asyncHandler(async (req, res, next) => {
         categories: categories,
     })
 })
+
+exports.categoryDetails = asyncHandler(async (req, res, next) => {
+    const currentCategory = await Category.findOne({_id: req.params.id}).exec();
+
+    const categoryItems = await Item.find({category: currentCategory}).exec();
+
+    res.render('categoryDetails', {
+        title: currentCategory.name,
+        categoryItems: categoryItems,
+    })
+})
