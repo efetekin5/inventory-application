@@ -31,5 +31,6 @@ exports.categoryDetails = asyncHandler(async (req, res, next) => {
     res.render('categoryDetails', {
         title: currentCategory.name,
         categoryItems: categoryItems,
+        description: currentCategory.description,
     })
 })
