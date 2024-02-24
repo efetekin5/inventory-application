@@ -7,6 +7,8 @@ router.get('/', categoriesController.categoryList);
 
 router.get('/category/:id', categoriesController.categoryDetails);
 
-router.get('/create', categoriesController.createCategory);
+router.get('/create', categoriesController.createCategoryGet);
+
+router.post('/create', categoriesController.createCategoryPost);
 
 module.exports = router;
