@@ -22,3 +22,9 @@ exports.itemDetails = asyncHandler(async (req, res, next) => {
         category: item.category,
     })
 })
+
+exports.itemCreateGet = asyncHandler(async (req, res, next) => {
+    res.render('itemForm', {
+        title: 'Create New Item',
+    })
+})

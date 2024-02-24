@@ -1,0 +1,33 @@
+extends layout 
+
+block content 
+    h1 #{title}
+    br
+
+    form(method='POST')
+        h5
+            label(for='category') Category:
+            input#category.form-control(type='text' name='category')
+        br
+
+        h5
+            label(for='title') Title:
+            input#title.form-control(type='text' name='title')
+        br
+
+        h5
+            label(for='description') Description:
+            input#description.form-control(type='text' name='description')
+        br
+        
+        h5
+            label(for='price') Price:
+            input#price.form-control(type='text' name='price')
+        br
+
+        h5
+            label(for='numberInStock') Number In Stock:
+            input#numberInStock.form-control(type='text' name='numberInStock')
+        br
+
+        button.btn.btn-primary(type='submit') Submit 

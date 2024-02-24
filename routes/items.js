@@ -7,4 +7,6 @@ router.get('/', itemsController.itemList);
 
 router.get('/:id', itemsController.itemDetails);
 
+router.get('/item/create', itemsController.itemCreateGet);
+
 module.exports = router;
