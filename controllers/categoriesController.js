@@ -49,7 +49,7 @@ exports.createCategoryPost = [
         .escape(),
     body('description')
         .trim()
-        .isLength()
+        .isLength({min: 1})
         .escape(),
 
     asyncHandler(async (req, res, next) => {
