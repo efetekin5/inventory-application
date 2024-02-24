@@ -34,3 +34,10 @@ exports.categoryDetails = asyncHandler(async (req, res, next) => {
         description: currentCategory.description,
     })
 })
+
+exports.createCategory = asyncHandler(async (req, res, next) => {
+    
+    res.render('categoryForm', {
+        title: "Create New Category",
+    })
+})

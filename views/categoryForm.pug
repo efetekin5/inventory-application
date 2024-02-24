@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+    h1 #{title}
+    br
+    form(method='POST')
+        h5 
+            label(for='name') Name:
+            input#name.form-control(type='text')
+        br
+        h5 
+            label(for='description') Description: 
+            input#description.form-control(type='text')
+        br
+        button.btn.btn-primary(type='submit') Submit
+
