@@ -13,4 +13,6 @@ router.post('/create', categoriesController.createCategoryPost);
 
 router.get('/category/:id/delete', categoriesController.deleteCategoryGet);
 
+router.post('/category/:id/delete', categoriesController.deleteCategoryPost);
+
 module.exports = router;

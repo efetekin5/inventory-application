@@ -80,9 +80,16 @@ exports.createCategoryPost = [
 
 exports.deleteCategoryGet = asyncHandler(async (req, res, next) => {
     const currentCategory = await Category.findById(req.params.id).exec();
+    const categoryItems = await Item.find({category: currentCategory}).exec();
 
+    console.log(categoryItems);
     res.render('categoryDelete', {
-        title: 'Are you sure you want to delete this category',
         categoryName: currentCategory.name,
+        categoryItems: categoryItems,
     })
+})
+
+exports.deleteCategoryPost = asyncHandler(async (req, res, next) => {
+    await Category.findByIdAndDelete(req.params.id);
+    res.redirect('/categories');
 })

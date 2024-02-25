@@ -3,12 +3,8 @@ extends layout
 block content 
     h1 Category: #{title}
     h5 #{description}
-
     br
-
     h3 All Items:
-    br
-    hr
 
     if categoryItems.length
         ul 
@@ -16,6 +12,6 @@ block content
                 li 
                     h5 
                         a(href=item.url) #{item.name}
-    else 
-        h5 
-            a(href=categoryUrl + '/delete') Delete Category
+    hr
+    h5 
+        a(href=categoryUrl + '/delete') Delete Category
