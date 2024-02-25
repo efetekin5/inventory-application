@@ -3,6 +3,7 @@ const { body, validationResult } = require('express-validator');
 
 const Category = require('../models/category');
 const Item = require('../models/item');
+const { ResultWithContextImpl } = require('express-validator/src/chain');
 
 exports.index = asyncHandler(async (req, res, next) => {
     const categoryCount = await Category.countDocuments().exec();
@@ -25,14 +26,14 @@ exports.categoryList = asyncHandler(async (req, res, next) => {
 })
 
 exports.categoryDetails = asyncHandler(async (req, res, next) => {
-    const currentCategory = await Category.findOne({_id: req.params.id}).exec();
-
+    const currentCategory = await Category.findById(req.params.id).exec();
     const categoryItems = await Item.find({category: currentCategory}).exec();
 
     res.render('categoryDetails', {
         title: currentCategory.name,
         categoryItems: categoryItems,
         description: currentCategory.description,
+        categoryUrl: currentCategory.url,
     })
 })
 
@@ -76,3 +77,12 @@ exports.createCategoryPost = [
         }
     })
 ]
+
+exports.deleteCategoryGet = asyncHandler(async (req, res, next) => {
+    const currentCategory = await Category.findById(req.params.id).exec();
+
+    res.render('categoryDelete', {
+        title: 'Are you sure you want to delete this category',
+        categoryName: currentCategory.name,
+    })
+})

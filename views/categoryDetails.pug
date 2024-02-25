@@ -7,9 +7,15 @@ block content
     br
 
     h3 All Items:
+    br
+    hr
 
-    ul 
-        each item in categoryItems
-            li 
-                h5 
-                    a(href=item.url) #{item.name}
+    if categoryItems.length
+        ul 
+            each item in categoryItems
+                li 
+                    h5 
+                        a(href=item.url) #{item.name}
+    else 
+        h5 
+            a(href=categoryUrl + '/delete') Delete Category
