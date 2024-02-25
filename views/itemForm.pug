@@ -7,27 +7,42 @@ block content
     form(method='POST')
         h5
             label(for='category') Category:
-            input#category.form-control(type='text' name='category')
+            select#category.form-control(name='category' required)
+                each category in categories
+                    if itemCategoryId != undefined
+                        if category._id.toString() === itemCategoryId.toString()
+                            option(value=category._id selected) #{category.name}
+                        else
+                            option(value=category._id) #{category.name}
+                    else 
+                        option(value=category._id) #{category.name}
         br
 
         h5
-            label(for='title') Title:
-            input#title.form-control(type='text' name='title')
+            label(for='name') Name:
+            input#name.form-control(type='text' name='name' required value=(name === undefined ? '' : name))
         br
 
         h5
             label(for='description') Description:
-            input#description.form-control(type='text' name='description')
+            input#description.form-control(type='text' name='description' required value=(description === undefined ? '' : description))
         br
         
         h5
             label(for='price') Price:
-            input#price.form-control(type='text' name='price')
+            input#price.form-control(type='number' name='price' required value=(price === undefined ? '' : price))
         br
 
         h5
             label(for='numberInStock') Number In Stock:
-            input#numberInStock.form-control(type='text' name='numberInStock')
+            input#numberInStock.form-control(type='number' name='numberInStock' value=(numberInStock === undefined ? '' : numberInStock))
         br
 
         button.btn.btn-primary(type='submit') Submit 
+
+    br  
+    if errors 
+        h3 Errors:
+        ul 
+            each error in errors 
+                li #{error.msg}
