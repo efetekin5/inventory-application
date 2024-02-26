@@ -122,6 +122,7 @@ exports.updateCategoryPost = [
                 title: 'Update Category',
                 name: req.body.name,
                 description: req.body.description,
+                errors: errors.array(),
             })
         } else {
             const newCategory = new Category({

@@ -17,4 +17,6 @@ router.post('/:id/delete', itemsController.itemDeletePost);
 
 router.get('/:id/update', itemsController.itemUpdateGet);
 
+router.post('/:id/update', itemsController.itemUpdatePost);
+
 module.exports = router;

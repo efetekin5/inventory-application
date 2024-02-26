@@ -122,3 +122,59 @@ exports.itemUpdateGet = asyncHandler(async (req, res, next) => {
         numberInStock: item.numberInStock,
     })
 })
+
+exports.itemUpdatePost = [
+    body('category')
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body('name')
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body('description')
+        .trim()
+        .isLength({min: 1})
+        .escape(),
+    body('price')
+        .notEmpty()
+        .isInt({min: 0})
+        .withMessage('Lowest price must be 0'),
+    body('numberInStock')
+        .notEmpty()
+        .isInt({min: 0})
+        .withMessage('Lowes number in stock must be 0'),
+
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        const categories = await Category.find().exec();
+        const updatedItemCategoryId = req.body.category;
+        const updatedItemCategory = await Category.findOne({_id: updatedItemCategoryId}).exec();
+
+        if(!errors.isEmpty()) {
+            res.render('itemForm', {
+                title: 'Update Item',
+                categories: categories,
+                itemCategoryId: req.body.category,
+                name: req.body.name,
+                description: req.body.description,
+                price: req.body.price,
+                numberInStock: req.body.numberInStock,
+                errors: errors.array(),
+            })
+        } else {
+            const updatedItem = new Item({
+                name: req.body.name,
+                description: req.body.description,
+                category: updatedItemCategory,
+                price: req.body.price,
+                numberInStock: req.body.numberInStock,
+                _id: req.params.id,
+            })
+
+            await Item.findByIdAndUpdate(req.params.id, updatedItem, {});
+            res.redirect('/items');
+        }
+    })
+]
