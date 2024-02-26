@@ -106,3 +106,19 @@ exports.itemDeletePost = asyncHandler(async (req, res, next) => {
     await Item.findByIdAndDelete(req.params.id);
     res.redirect('/items');
 })
+
+exports.itemUpdateGet = asyncHandler(async (req, res, next) => {
+    const categories = await Category.find().exec();
+    const item = await Item.findById(req.params.id).populate('category').exec();
+    const itemCategory = await Category.findOne({name: item.category.name}).exec();
+
+    res.render('itemForm', {
+        title: 'Update Item',
+        categories: categories,
+        itemCategoryId: itemCategory._id,
+        name: item.name,
+        description: item.description,
+        price: item.price,
+        numberInStock: item.numberInStock,
+    })
+})
