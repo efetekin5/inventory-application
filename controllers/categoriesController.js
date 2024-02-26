@@ -93,3 +93,9 @@ exports.deleteCategoryPost = asyncHandler(async (req, res, next) => {
     await Category.findByIdAndDelete(req.params.id);
     res.redirect('/categories');
 })
+
+exports.updateCategoryGet = asyncHandler(async (req, res, next) => {
+    res.render('categoryForm', {
+        title: 'Update Category',
+    })
+})
