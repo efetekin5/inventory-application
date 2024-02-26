@@ -22,6 +22,7 @@ exports.itemDetails = asyncHandler(async (req, res, next) => {
         description: item.description,
         numberInStock: item.numberInStock,
         category: item.category,
+        url: item.url,
     })
 })
 
@@ -91,4 +92,12 @@ exports.itemCreatePost = [
             res.redirect('/items');
         }
     })
-]
+];
+
+exports.itemDeleteGet = asyncHandler(async (req, res, next) => {
+    const itemToDelete = await Item.findById(req.params.id).exec();
+
+    res.render('itemDelete', {
+        name: itemToDelete.name
+    })
+})

@@ -11,4 +11,6 @@ router.get('/item/create', itemsController.itemCreateGet);
 
 router.post('/item/create', itemsController.itemCreatePost);
 
+router.get('/:id/delete', itemsController.itemDeleteGet);
+
 module.exports = router;
