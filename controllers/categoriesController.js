@@ -82,7 +82,6 @@ exports.deleteCategoryGet = asyncHandler(async (req, res, next) => {
     const currentCategory = await Category.findById(req.params.id).exec();
     const categoryItems = await Item.find({category: currentCategory}).exec();
 
-    console.log(categoryItems);
     res.render('categoryDelete', {
         categoryName: currentCategory.name,
         categoryItems: categoryItems,
