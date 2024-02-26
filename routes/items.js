@@ -13,4 +13,6 @@ router.post('/item/create', itemsController.itemCreatePost);
 
 router.get('/:id/delete', itemsController.itemDeleteGet);
 
+router.post('/:id/delete', itemsController.itemDeletePost);
+
 module.exports = router;

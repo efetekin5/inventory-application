@@ -101,3 +101,8 @@ exports.itemDeleteGet = asyncHandler(async (req, res, next) => {
         name: itemToDelete.name
     })
 })
+
+exports.itemDeletePost = asyncHandler(async (req, res, next) => {
+    await Item.findByIdAndDelete(req.params.id);
+    res.redirect('/items');
+})
